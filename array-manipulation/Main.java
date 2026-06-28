@@ -145,6 +145,44 @@ public class Main {
         return maxFreqWaliKey;
     }
 
+    public static int[] identifyHigestAndLowestFreq(int[] arr){
+        HashMap<Integer , Integer> freq = new HashMap<>();
+
+        // insert data
+        for(int num: arr){
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
+        }
+
+        //hashmap is ready
+
+        int higestFreq = Integer.MIN_VALUE;
+        int higestNum = -1;
+
+        for(int key: freq.keySet()){
+            int currentFreq = freq.get(key);
+            int currentKey = key;
+            if(currentFreq > higestFreq){
+                higestFreq = currentFreq;
+                higestNum = currentKey;
+            }
+        }
+
+        int lowestFreq = Integer.MAX_VALUE;
+        int lowestNum = -1;
+        for(int key: freq.keySet()){
+            int currentFreq = freq.get(key);
+            int currentKey = key;
+            if(currentFreq < lowestFreq){
+                lowestFreq = currentFreq;
+                lowestNum = currentKey;
+            }
+        }
+
+        int ans[] = {higestNum , lowestNum};
+        return ans;
+
+    }
+
     public static void main(String[] args) {
 
         int[] arr = {1, 2, 3, 4, 5};
@@ -177,5 +215,7 @@ public class Main {
         int[] arr7 = {1,2,2,2,3,4,2,3,1,3,5};
 
         System.out.println("Mode is : " + getMode(arr7));
+
+        System.out.println(Arrays.toString(identifyHigestAndLowestFreq(arr7)));
     }
 }
